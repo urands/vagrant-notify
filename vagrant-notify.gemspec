@@ -6,11 +6,11 @@ require 'vagrant-notify/version'
 Gem::Specification.new do |gem|
   gem.name          = "vagrant-notify"
   gem.version       = Vagrant::Notify::VERSION
-  gem.authors       = ["Fabio Rehm"]
-  gem.email         = ["fgrehm@gmail.com"]
-  gem.description   = 'A Vagrant plugin that forwards `notify-send` from guest to host machine and notifies provisioning status'
+  gem.authors       = ["Uran (fork fgrehm)"]
+  gem.email         = ["ds@inbox.ru"]
+  gem.description   = 'A Vagrant plugin that forwards `notify-send` from guest to host machine on Windows 8/10 and notifies provisioning status'
   gem.summary       = gem.description
-  gem.homepage      = "https://github.com/fgrehm/vagrant-notify"
+  gem.homepage      = "https://github.com/urands/vagrant-notify"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

@@ -1,3 +1,6 @@
+
+## [0.4.2] (Fork!!!)
+
 ## [0.4.1](https://github.com/fgrehm/vagrant-notify/compare/v0.3.0...master) (unreleased)
 
 

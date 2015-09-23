@@ -3,19 +3,15 @@
 [![Build Status](https://travis-ci.org/fgrehm/vagrant-notify.png)](https://travis-ci.org/fgrehm/vagrant-notify)
 [![Gem Version](https://badge.fury.io/rb/vagrant-notify.png)](http://badge.fury.io/rb/vagrant-notify)
 
-A Vagrant plugin that forwards `notify-send` from guest to host machine and
+A Vagrant plugin that forwards `notify-send` from guest to host machine on Windows 8/10 and
 notifies provisioning status. [See it in action](#demo)
-
-## Help Needed!
-
-This project is looking for maintainers, please see [GH-24](https://github.com/fgrehm/vagrant-notify/issues/24) for more.
 
 ## Installation
 
 Make sure you have Vagrant 1.4+ around and run:
 
 ```terminal
-$ vagrant plugin install vagrant-notify
+$ vagrant plugin install vagrant-rackspace --plugin-source https://github.com/urands/vagrant-notify
 ```
 
 
@@ -25,7 +21,7 @@ $ vagrant plugin install vagrant-notify
 
 Whenever you run `vagrant up`, a Ruby [TCPServer](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/socket/rdoc/TCPServer.html)
 will fire up on a port within the [usable port range](https://github.com/mitchellh/vagrant/blob/master/config/default.rb#L14)
-and a [script](https://github.com/fgrehm/vagrant-notify/blob/master/files/notify-send.erb)
+and a [script](https://github.com/urands/vagrant-notify/blob/master/files/notify-send.ephp)
 will be copied over to the guest machine to replace the original `notify-send`
 command.
 
@@ -50,6 +46,10 @@ You will need to create a `notify-send` script, available on `$PATH`. The script
 [Growl](http://growl.info/) with [GrowlNotify](http://growl.info/downloads) (version 1.2.2 is free but unreliable)
 or to the [Notification Center](http://support.apple.com/kb/HT5362) available on OS X 10.8+
 using f.ex. [terminal-notifier](https://github.com/alloy/terminal-notifier).
+
+### Windows 7 an early
+Need download [Notify-send for Windows](http://vaskovsky.net/notify-send/) and install to home  or system directory
+
 
 A (too) primitive script integrating with Growl:
 

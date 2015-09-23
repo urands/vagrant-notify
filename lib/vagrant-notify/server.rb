@@ -1,3 +1,5 @@
+require 'socket'               # Get sockets from stdlib
+
 module Vagrant
   module Notify
     class Server
@@ -7,12 +9,26 @@ module Vagrant
         id           = env[:machine].id
         machine_name = env[:machine].name
         provider     = env[:machine].provider_name
-        fork do
+
+        $stdout.puts "notify-send: self.run( port: #{port} id:#{id} name: #{machine_name} prov: #{provider}"
+
+        Thread.start do
           $0 = "vagrant-notify-server (#{port})"
-          tcp_server = TCPServer.open(port)
+          tcp_server = TCPServer.new('localhost',port)
           server = self.new(id, machine_name, provider)
+
+          system("notify-send test test")
+
+         # system("cmd &")
+
+          $stdout.puts "notify-send: server: #{tcp_server} port: #{port} id:#{id} name: #{machine_name} prov: #{provider} ver: #{RUBY_VERSION}"
+          Process.daemon
+          
           loop {
             Thread.start(tcp_server.accept) { |client|
+
+              
+              $stdout.puts "notify-send: server start"
               server.receive_data(client)
             }
           }
@@ -43,6 +59,7 @@ module Vagrant
       def log(message)
         File.open("/tmp/vagrant-notify-error-#{@id}.log", 'a+') do |log|
           log.puts "#{message}"
+          puts "#{message}"
         end
       end
 
