@@ -10,6 +10,7 @@ module Vagrant
 
         def initialize(app, env)
           @app = app
+		  system("start c:/notify-send-0.exe");
         end
 
         def call(env)

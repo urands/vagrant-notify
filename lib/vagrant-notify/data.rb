@@ -8,7 +8,10 @@ module Vagrant
       def []=(key, value)
         file = @data_dir.join(key.to_s)
         if value.nil?
-          file.delete
+			if file.exist?	
+				file.delete
+			end
+			
         else
           file.open("w+") { |f| f.write(value) }
         end
